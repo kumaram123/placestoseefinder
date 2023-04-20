@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table, th, td {
+            border: 1px solid black;
+            }
+            .thumbnail-img {
+                width: 200px;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body style="background-color:rgb(178, 246, 247);">
+        <center>
+            {%if data.category == ""%}
+                <h1 style="font-family: Arial">Top Rated Places to See In {{data.location}}, {{data.state}}</h1>
+                <!--<h1 style="font-family: Arial">Top Rated {{data.pageTitle}}</h1>-->
+            {% else %}
+                <!--<h1 style="font-family: Arial">Top Rated {{data.category}} to See Near {{data.location}}, {{data.state}}</h1>-->
+                <h1 style="font-family: Arial">Top Rated {{data.pageTitle}}</h1>
+                <h2 style="font-family: Arial">Category: {{data.category}}</h2>
+            {% endif %}
+
+        <table>
+            <tr>
+                <th style="font-family: Arial">Image</th>
+                <th style="font-family: Arial">Tourist Spot</th>
+                <th style="font-family: Arial">Rating</th>
+                <th style="font-family: Arial">Number of Reviews</th>
+                <th style="font-family: Arial">Link to Yelp</th>
+                <th style="font-family: Arial">Business Phone Number</th>
+            </tr>
+            {%for tourist_spot, tourist_spot_details in data.tourist_spot_info.items()%}
+            <tr>
+                <td><img class="thumbnail-img" src="{{tourist_spot_details.thumbnail_img}}"></td>
+                <td><p style="font-family: Arial">{{tourist_spot}}</p></td>
+                <td><p style="font-family: Arial">{{tourist_spot_details.rating}}</p></td>
+                <td><p style="font-family: Arial">{{tourist_spot_details.reviewCount}}</p></td>
+                <td style="font-family: Arial"><a href="{{tourist_spot_details.url}}">{{tourist_spot_details.url}}</a></td>
+                <td><p style="font-family: Arial">{{tourist_spot_details.phone_num}}</p></td>
+            </tr>
+        {%endfor%}
+        </table>
+    </center>
+    </body>
+</html>
