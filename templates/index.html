@@ -1,0 +1,67 @@
+<head>
+<style>
+    body {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://www.planetware.com/photos-large/USMI/michigan-michigan-attractions-mackinac-island.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    table, th, td {
+    border: 1px solid black;
+    }
+    tr { background-color: rgb(0, 200, 255); }
+    td { background-color: #ffffff; }
+
+</style>
+</head>
+
+<br><br><br><br><br><br><br><br>
+
+<center>
+    <h1 style="font-size:50px;" style="font-family: Arial" >Welcome to the Places To See Finder!</h1>
+    <form action="/tourist_spots_results" method = "POST">
+
+        <label style="font-size:25px;" for="state">State:</label>
+            <select id="State" name = "State" >
+                <option value=""> </option>
+                {%for state in data.states%}
+                    <option value={{state}}>{{state}}</option>
+                {%endfor%}
+            </select>
+
+        <!--<h2 style="font-size:25px;"> State <input type = "text" name = "State" /></h2>-->
+        <p style="font-size:25px;"> City <input type = "text" name = "Location" /></p>
+        <p style="font-size:25px;"> Category <input type = "text" name = "Category" /></p>
+        <p style="font-family: Arial">(Enter a sub-category from the table below, or leave blank to see all results)</p>
+
+    <p><input type = "submit" value = "Submit" /></p>
+
+    <table>
+        <tr>
+            <th style="font-family: Arial">Category</th>
+            <th style="font-family: Arial">Sub-Categories</th>
+        </tr>
+        {%for categories, info in data.cat_dict.items()%}
+        <tr>
+            <td VALIGN=TOP><p style="font-family: Arial">{{categories}}</p></td>
+
+            <td>
+                {%for moreCategories in info%}
+                    <p style="font-family: Arial">{{moreCategories}}</p>
+                {%endfor%}
+            </td>
+
+        </tr>
+    {%endfor%}
+    </table>
+
+<!--
+        <label style="font-size:25px;" for="city">City:</label>
+        <select id="city" name="city">
+            <option value=""> </option>
+            {%for city in data.cities%}
+                <option value="city">{{city.0}}</option>
+            {%endfor%}
+        </select>-->
+    </form>
+</center>
