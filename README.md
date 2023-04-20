@@ -14,3 +14,5 @@ The "Places to Visit Recommender" is a Flask application with an easy-to-use use
 * Phone Number
 * Link to Yelp to see more details about the place
 
+## Demo Video:
+https://youtu.be/vgbscBzDWps
